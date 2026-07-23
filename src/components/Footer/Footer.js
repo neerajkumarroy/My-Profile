@@ -55,17 +55,17 @@ function Footer() {
                             href="https://github.com/neerajkumarroy"
                             target="_blank"
                             rel="noreferrer"
-                            whileHover={{ scale: 1.2, rotate: 8, y: -3 }}
+                            whileHover={{ scale: 1.2, rotate: 8, color: "#ff7b00" }}
                             whileTap={{ scale: 0.9 }}
-                            aria-label="GitHub"
                         >
                             <FaGithub />
                         </motion.a>
                         <motion.a
-                            href="#"
-                            whileHover={{ scale: 1.2, rotate: -8, y: -3 }}
+                            href="https://www.linkedin.com/in/neeraj-kumar-roys/"
+                            target="_blank"
+                            rel="noreferrer"
+                            whileHover={{ scale: 1.2, rotate: -8, color: "#ff7b00" }}
                             whileTap={{ scale: 0.9 }}
-                            aria-label="LinkedIn"
                         >
                             <FaLinkedin />
                         </motion.a>
