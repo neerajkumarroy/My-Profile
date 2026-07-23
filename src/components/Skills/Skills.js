@@ -66,7 +66,6 @@ function Counter({ target, inView }) {
 
     useEffect(() => {
         if (!inView) return;
-        let start = 0; //add let key word
         const duration = 1200;
         const startTime = performance.now();
 

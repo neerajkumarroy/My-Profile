@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.311d137b.css",
+    "main.js": "/static/js/main.532553ba.js",
+    "static/js/453.15a626a8.chunk.js": "/static/js/453.15a626a8.chunk.js",
+    "static/media/yogawellness.png": "/static/media/yogawellness.f3a2d953eb172f54f6fe.png",
+    "static/media/Global-Dental.png": "/static/media/Global-Dental.218137fbe3b816e1a558.png",
+    "static/media/Data-string.png": "/static/media/Data-string.98a49d2e45bc36b46553.png",
+    "static/media/Hero2.png": "/static/media/Hero2.2bd4c87dd9bde5aa37e6.png",
+    "index.html": "/index.html",
+    "main.311d137b.css.map": "/static/css/main.311d137b.css.map",
+    "main.532553ba.js.map": "/static/js/main.532553ba.js.map",
+    "453.15a626a8.chunk.js.map": "/static/js/453.15a626a8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.311d137b.css",
+    "static/js/main.532553ba.js"
+  ]
+}
