@@ -4,7 +4,6 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Project1 from "../../images/yogawellness.png";
 import project2 from "../../images/Global-Dental.png";
 import Project3 from "../../images/Data-string.png";
-import Project4 from "../../images/project4.jpeg";
 
 const projectData = [
     {
