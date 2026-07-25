@@ -9,6 +9,8 @@ import Skills from "./components/Skills/Skills";
 import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import WhatsApp from "./components/WhatsApp/WhatsApp";
+import Education from "./components/Education/Education";
+import Experience from "./components/Experience/Experience";
 function App() {
 
   return (
@@ -22,6 +24,8 @@ function App() {
       <Hero />
 
       <About />
+      <Education />
+      <Experience />
       <Projects />
       <Skills />
       <Contact />

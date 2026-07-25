@@ -87,7 +87,7 @@ function About() {
                 >
                     {[
                         { value: "10+", label: "Projects" },
-                        { value: "6+", label: "months Learning Experience" },
+                        { value: "1+", label: "Years Learning" },
                         { value: "15+", label: "Technologies" },
                     ].map((stat) => (
                         <motion.div

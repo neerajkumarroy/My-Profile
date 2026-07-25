@@ -38,6 +38,22 @@ function Navbar() {
                 >
                     About
                 </Link>
+                <Link
+                    to="education"
+                    smooth={true}
+                    duration={500}
+                    onClick={() => setMenuOpen(false)}
+                >
+                    Education
+                </Link>
+                <Link
+                    to="experience"
+                    smooth={true}
+                    duration={500}
+                    onClick={() => setMenuOpen(false)}
+                >
+                    Experience
+                </Link>
 
                 <Link
                     to="skills"

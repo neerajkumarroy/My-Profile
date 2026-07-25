@@ -18,7 +18,7 @@ import {
     SiMysql,
     SiNextdotjs,
     SiTailwindcss,
-    SiBootstrap
+    SiBootstrap,
 } from "react-icons/si";
 
 const skills = [
@@ -41,39 +41,59 @@ const titleVariants = {
     visible: (i = 0) => ({
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" },
+        transition: {
+            duration: 0.6,
+            delay: i * 0.15,
+            ease: "easeOut",
+        },
     }),
 };
 
 const gridVariants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+    visible: {
+        transition: {
+            staggerChildren: 0.08,
+            delayChildren: 0.1,
+        },
+    },
 };
 
 const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.92 },
+    hidden: {
+        opacity: 0,
+        y: 40,
+        scale: 0.92,
+    },
     visible: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { duration: 0.5, ease: "easeOut" },
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+        },
     },
 };
 
-/* Animated count-up number, starts only once the card is in view */
 function Counter({ target, inView }) {
     const [value, setValue] = useState(0);
 
     useEffect(() => {
         if (!inView) return;
+
         const duration = 1200;
         const startTime = performance.now();
 
         function tick(now) {
             const progress = Math.min((now - startTime) / duration, 1);
             setValue(Math.round(progress * target));
-            if (progress < 1) requestAnimationFrame(tick);
+
+            if (progress < 1) {
+                requestAnimationFrame(tick);
+            }
         }
+
         requestAnimationFrame(tick);
     }, [inView, target]);
 
@@ -82,19 +102,32 @@ function Counter({ target, inView }) {
 
 function SkillCard({ skill, index }) {
     const ref = useRef(null);
-    const inView = useInView(ref, { once: true, amount: 0.4 });
+    const inView = useInView(ref, {
+        once: true,
+        amount: 0.4,
+    });
 
     return (
         <motion.div
+            ref={ref}
             className="skill-card"
             variants={cardVariants}
-            whileHover={{ y: -12, scale: 1.03 }}
-            ref={ref}
+            whileHover={{
+                y: -12,
+                scale: 1.03,
+            }}
         >
             <motion.div
                 className="skill-icon"
-                whileHover={{ rotate: 12, scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                whileHover={{
+                    rotate: 12,
+                    scale: 1.15,
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 10,
+                }}
             >
                 {skill.icon}
             </motion.div>
@@ -105,8 +138,14 @@ function SkillCard({ skill, index }) {
                 <motion.div
                     className="progress"
                     initial={{ width: 0 }}
-                    animate={{ width: inView ? `${skill.level}%` : 0 }}
-                    transition={{ duration: 1.1, ease: "easeOut", delay: index * 0.05 }}
+                    animate={{
+                        width: inView ? `${skill.level}%` : 0,
+                    }}
+                    transition={{
+                        duration: 1.1,
+                        ease: "easeOut",
+                        delay: index * 0.05,
+                    }}
                 />
             </div>
 
@@ -118,6 +157,10 @@ function SkillCard({ skill, index }) {
 }
 
 function Skills() {
+    const [showAll, setShowAll] = useState(false);
+
+    const visibleSkills = showAll ? skills : skills.slice(0, 3);
+
     return (
         <section className="skills" id="skills">
             <div className="section-title">
@@ -130,6 +173,7 @@ function Skills() {
                 >
                     My Skills
                 </motion.span>
+
                 <motion.h2
                     custom={1}
                     variants={titleVariants}
@@ -139,6 +183,7 @@ function Skills() {
                 >
                     Technical Skills
                 </motion.h2>
+
                 <motion.p
                     custom={2}
                     variants={titleVariants}
@@ -154,13 +199,27 @@ function Skills() {
                 className="skills-grid"
                 variants={gridVariants}
                 initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
+                animate="visible"
             >
-                {skills.map((skill, index) => (
-                    <SkillCard skill={skill} index={index} key={skill.name} />
+                {visibleSkills.map((skill, index) => (
+                    <SkillCard
+                        key={skill.name}
+                        skill={skill}
+                        index={index}
+                    />
                 ))}
             </motion.div>
+
+            {skills.length > 3 && (
+                <div className="skills-btn-wrapper">
+                    <button
+                        className="skills-read-more"
+                        onClick={() => setShowAll(!showAll)}
+                    >
+                        {showAll ? "Show Less" : "Read More"}
+                    </button>
+                </div>
+            )}
         </section>
     );
 }
