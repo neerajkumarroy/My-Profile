@@ -1,9 +1,11 @@
 import "./Hero.css";
-import { FaGithub, FaLinkedin, FaReact, FaNodeJs } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaReact, FaNodeJs, FaEnvelope } from "react-icons/fa";
 import { SiMongodb, SiJavascript } from "react-icons/si";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import profile from "../../images/Hero2.png";
+import { useState } from "react";
+import HirePopup from "../HirePopup/HirePopup";
 
 const containerVariants = {
     hidden: {},
@@ -30,6 +32,7 @@ const iconVariants = {
 };
 
 function Hero() {
+    const [openPopup, setOpenPopup] = useState(false);
     return (
         <section className="hero" id="home">
             <motion.div
@@ -66,12 +69,9 @@ function Hero() {
                 </motion.p>
 
                 <motion.div className="hero-buttons" variants={fadeUp}>
-                    <motion.button
-                        whileHover={{ scale: 1.06, y: -5 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
+                    <button onClick={() => setOpenPopup(true)}>
                         Hire Me
-                    </motion.button>
+                    </button>
                     <a href="/NeerajResume.pdf" download>
                         <motion.button
                             className="outline"
@@ -103,6 +103,22 @@ function Hero() {
                         whileTap={{ scale: 0.9 }}
                     >
                         <FaLinkedin />
+                    </motion.a>
+
+                    <motion.a
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=neerajkumarroy@gmail.com&su=Hiring%20Inquiry&body=Hello%20Neeraj,%0A%0AI%20visited%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project."
+                        target="_blank"
+                        rel="noreferrer"
+                        whileHover={{
+                            scale: 1.2,
+                            rotate: 8,
+                            color: "#EA4335",
+                            textShadow: "0 0 15px #EA4335"
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    >
+                        <FaEnvelope />
                     </motion.a>
                 </motion.div>
             </motion.div>
@@ -166,6 +182,10 @@ function Hero() {
                 >
                     <SiMongodb className="icon" />
                 </motion.div>
+                <HirePopup
+                    isOpen={openPopup}
+                    onClose={() => setOpenPopup(false)}
+                />
             </div>
         </section>
     );

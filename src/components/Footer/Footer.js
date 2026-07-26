@@ -2,7 +2,7 @@ import "./Footer.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter, FaArrowUp, FaHeart } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowUp, FaHeart } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 
 const quickLinks = ["home", "about", "skills", "projects", "contact"];
@@ -70,12 +70,14 @@ function Footer() {
                             <FaLinkedin />
                         </motion.a>
                         <motion.a
-                            href="#"
+                            href="https://mail.google.com/mail/?view=cm&fs=1&to=neerajkumarroy@gmail.com&su=Hiring%20Inquiry"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             whileHover={{ scale: 1.2, rotate: 8, y: -3 }}
                             whileTap={{ scale: 0.9 }}
-                            aria-label="Twitter"
+                            aria-label="Email"
                         >
-                            <FaTwitter />
+                            <FaEnvelope />
                         </motion.a>
                     </div>
                 </motion.div>
