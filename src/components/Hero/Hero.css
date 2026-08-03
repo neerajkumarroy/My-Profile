@@ -24,6 +24,144 @@
   }
 }
 
+/* ---------- Moving grid overlay ---------- */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 123, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 123, 0, 0.06) 1px, transparent 1px);
+  background-size: 45px 45px;
+  animation: gridMove 20s linear infinite;
+  mask-image: radial-gradient(circle at 50% 40%, black 0%, transparent 75%);
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 90px 90px;
+  }
+}
+
+/* ---------- Meteors ---------- */
+.meteors {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  animation-name: meteorFall;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+.meteor::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 180, 80, 0.9), transparent);
+  transform: translateY(-50%) rotate(215deg);
+  transform-origin: left center;
+}
+
+@keyframes meteorFall {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-260px, 220px);
+  }
+}
+
+/* ---------- Parallax orbs ---------- */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 260px;
+  height: 260px;
+  top: 10%;
+  left: 8%;
+  background: rgba(255, 123, 0, 0.28);
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 12%;
+  left: 30%;
+  background: rgba(97, 219, 251, 0.18);
+}
+
+.orb-3 {
+  width: 220px;
+  height: 220px;
+  top: 20%;
+  right: 10%;
+  background: rgba(77, 179, 61, 0.16);
+}
+
+/* ---------- Cursor spotlight ---------- */
+.cursor-spotlight {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 123, 0, 0.15) 0%,
+    rgba(255, 123, 0, 0) 70%
+  );
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-left,
+.hero-right {
+  position: relative;
+  z-index: 2;
+}
+
 .hero-left {
   width: 50%;
 }
@@ -33,10 +171,37 @@
   margin: 20px 0;
 }
 
+/* ---------- Gradient animated name ---------- */
+.gradient-name {
+  background: linear-gradient(
+    90deg,
+    #ff7b00,
+    #ffd580,
+    #ff7b00,
+    #ff3d00,
+    #ff7b00
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientTextMove 5s linear infinite;
+}
+
+@keyframes gradientTextMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
 .typing {
   color: #ff7b00;
   font-size: clamp(20px, 3vw, 32px);
   margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255, 123, 0, 0.35);
 }
 
 .hero-text {
@@ -96,6 +261,27 @@
   border: 2px solid #ff7b00 !important;
 }
 
+/* ---------- Ripple effect ---------- */
+.ripple {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: rippleAnim 0.65s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes rippleAnim {
+  to {
+    transform: scale(18);
+    opacity: 0;
+  }
+}
+
 .socials {
   display: flex;
   gap: 20px;
@@ -117,6 +303,11 @@
   align-items: center;
 }
 
+.tilt-wrapper {
+  z-index: 2;
+  position: relative;
+}
+
 .hero-right img {
   width: 300px;
   max-width: 100%;
@@ -136,6 +327,60 @@
   border-radius: 30%;
 }
 
+/* ---------- Orbit rings ---------- */
+.orbit-ring {
+  position: absolute;
+  border: 1px dashed rgba(255, 123, 0, 0.35);
+  border-radius: 50%;
+}
+
+.ring-1 {
+  width: 380px;
+  height: 380px;
+}
+.ring-2 {
+  width: 440px;
+  height: 440px;
+  border-style: dotted;
+  border-color: rgba(255, 123, 0, 0.2);
+}
+
+/* ---------- Conic rotating ring around photo ---------- */
+.conic-ring-wrap {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  padding: 4px;
+  z-index: 1;
+  overflow: hidden;
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 8px),
+    #000 calc(100% - 7px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 8px),
+    #000 calc(100% - 7px)
+  );
+}
+
+.conic-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    #ff7b00 60deg,
+    transparent 140deg,
+    transparent 220deg,
+    #ffd580 280deg,
+    transparent 360deg
+  );
+}
+
 .icon-wrap {
   position: absolute;
   display: flex;
@@ -152,21 +397,18 @@
   color: #61dbfb;
   animation-delay: 0s;
 }
-
 .node {
   right: 20px;
   top: 50px;
   color: #68a063;
   animation-delay: 0.6s;
 }
-
 .js {
   bottom: 30px;
   left: 40px;
   color: #f7df1e;
   animation-delay: 1.2s;
 }
-
 .mongo {
   bottom: 50px;
   right: 40px;
@@ -186,28 +428,45 @@
   }
 }
 
-/* ========================= */
-/* Large screens / laptops   */
-/* ========================= */
+/* ---------- Scroll indicator ---------- */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid rgba(255, 123, 0, 0.6);
+  border-radius: 14px;
+  z-index: 3;
+}
 
+.scroll-indicator span {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: #ff7b00;
+  border-radius: 50%;
+  margin: 6px auto;
+}
+
+/* ========================= */
 @media (max-width: 1200px) {
   .hero {
     padding: 100px 5%;
   }
-
   .hero-right img {
     width: 280px;
   }
-
   .glow {
     width: 300px;
     height: 300px;
   }
+  .conic-ring-wrap {
+    width: 300px;
+    height: 300px;
+  }
 }
-
-/* ========================= */
-/* Tablet */
-/* ========================= */
 
 @media (max-width: 992px) {
   .hero {
@@ -217,113 +476,112 @@
     min-height: auto;
     padding-bottom: 60px;
   }
-
   .hero-left {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-
   .hero-right {
     width: 100%;
     margin-bottom: 50px;
   }
-
   .hero-right img {
     width: 320px;
   }
-
   .hero-buttons {
     justify-content: center;
   }
-
   .socials {
     justify-content: center;
   }
-
   .hero-text {
     margin-left: auto;
     margin-right: auto;
   }
+  .cursor-spotlight {
+    display: none;
+  }
+  .orb {
+    display: none;
+  }
 }
-
-/* ========================= */
-/* Small tablet / large phone */
-/* ========================= */
 
 @media (max-width: 768px) {
   .hero {
     padding-top: 120px;
   }
-
   .hero-right img {
     width: 280px;
   }
-
   .glow {
     width: 260px;
     height: 260px;
     filter: blur(90px);
   }
-
   .icon {
     font-size: 38px;
   }
+  .ring-1 {
+    width: 320px;
+    height: 320px;
+  }
+  .ring-2 {
+    width: 370px;
+    height: 370px;
+  }
+  .conic-ring-wrap {
+    width: 260px;
+    height: 260px;
+  }
+  .meteors {
+    display: none;
+  }
 }
-
-/* ========================= */
-/* Mobile */
-/* ========================= */
 
 @media (max-width: 576px) {
   .hero {
     padding: 110px 20px 50px;
   }
-
   .hero-buttons {
     flex-direction: column;
     width: 100%;
   }
-
   .hero-buttons button {
     width: 100%;
   }
-
   .hero-right img {
     width: 220px;
   }
-
   .glow {
     width: 220px;
     height: 220px;
   }
-
   .icon {
     font-size: 30px;
   }
-
   .socials {
     font-size: 26px;
     gap: 16px;
   }
+  .orbit-ring {
+    display: none;
+  }
+  .conic-ring-wrap {
+    width: 220px;
+    height: 220px;
+  }
 }
-
-/* ========================= */
-/* Extra small phones */
-/* ========================= */
 
 @media (max-width: 360px) {
   .hero-right img {
     width: 180px;
   }
-
   .glow {
     width: 180px;
     height: 180px;
     filter: blur(70px);
   }
-
   .icon {
     font-size: 24px;
   }
@@ -333,7 +591,12 @@
 @media (prefers-reduced-motion: reduce) {
   .hero,
   .glow,
-  .icon-wrap {
+  .icon-wrap,
+  .gradient-name,
+  .orbit-ring,
+  .conic-ring,
+  .grid-overlay,
+  .meteor {
     animation: none !important;
   }
 }
