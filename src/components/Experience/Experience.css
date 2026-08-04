@@ -15,14 +15,13 @@
 .experience-heading {
   text-align: center;
   margin-bottom: clamp(20px, 3vh, 35px);
+  margin-top: 20px;
 }
 
 .experience-heading span {
   color: #ff7b00;
-  font-size: clamp(12px, 1.4vw, 14px);
+  font-size: 18px;
   font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
 }
 
 .experience-heading h2 {

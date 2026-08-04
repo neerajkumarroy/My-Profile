@@ -22,14 +22,13 @@
 .education-heading {
   text-align: center;
   margin-bottom: clamp(20px, 4vh, 40px);
+  margin-top: 20px;
 }
 
 .education-heading span {
   color: #ff7b00;
-  font-size: clamp(11px, 1.4vw, 15px);
+  font-size: 18px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
 }
 
 .education-heading h2 {
