@@ -21,12 +21,14 @@ const NN_COLORS = {
     cyan: [97, 219, 251],
 };
 
-const CONNECT_DIST = 120;
-const MOUSE_RADIUS = 170;
-const MOUSE_CONNECT_RADIUS = 150;
-const PULSE_MAX_RADIUS = 260;
+const CONNECT_DIST = 130;
+const MOUSE_RADIUS = 190; // bigger cursor influence zone = more interactive
+const MOUSE_CONNECT_RADIUS = 170;
+const PULSE_MAX_RADIUS = 280;
 const PULSE_SPEED = 6;
 const MAX_DPR = 1.75;
+const AMBIENT_PULSE_INTERVAL = 2600; // auto energy wave even with no interaction
+const TRAIL_LENGTH = 14; // cursor comet-trail sparks
 
 function getNodeCount(width) {
     if (width < 480) return 90;
@@ -46,10 +48,13 @@ function NeuralNetworkBackground() {
     const state = useRef({
         nodes: [],
         pulses: [],
+        trail: [], // recent cursor positions -> comet-trail sparks
         width: 0,
         height: 0,
         mouse: { x: -9999, y: -9999, active: false },
     }).current;
+
+    const ambientIntervalRef = useRef(null);
 
     const reducedMotion =
         typeof window !== "undefined" &&
@@ -62,14 +67,19 @@ function NeuralNetworkBackground() {
         for (let i = 0; i < count; i++) {
             const roll = Math.random();
             const layer = roll < 0.4 ? 0 : roll < 0.75 ? 1 : 2;
-            const speedScale = layer === 0 ? 0.12 : layer === 1 ? 0.22 : 0.36;
+            // Each node gets a constant "wander" speed for its layer so it
+            // NEVER settles or stops — only its heading direction drifts.
+            const baseSpeed = (layer === 0 ? 0.16 : layer === 1 ? 0.28 : 0.42) * (0.7 + Math.random() * 0.7);
             const baseR = layer === 0 ? 0.9 : layer === 1 ? 1.3 : 1.8;
 
             nodes[i] = {
                 x: Math.random() * width,
                 y: Math.random() * height,
-                vx: (Math.random() - 0.5) * speedScale,
-                vy: (Math.random() - 0.5) * speedScale,
+                angle: Math.random() * Math.PI * 2, // current heading
+                turnSpeed: 0.012 + Math.random() * 0.03, // how fast heading drifts
+                baseSpeed,
+                impulseX: 0, // temporary cursor/pulse push, decays independently
+                impulseY: 0,
                 r: baseR + Math.random() * 0.6,
                 phase: Math.random() * Math.PI * 2,
                 pulseSpeed: 0.35 + Math.random() * 0.5,
@@ -149,18 +159,24 @@ function NeuralNetworkBackground() {
                 spotlightRef.current.style.opacity = "1";
             }
 
+            // Drop a trailing spark for the comet-trail effect
+            state.trail.push({ x, y, life: 1 });
+            if (state.trail.length > TRAIL_LENGTH) state.trail.shift();
+
             clearTimeout(mouseIdleTORef.current);
             mouseIdleTORef.current = setTimeout(() => {
                 state.mouse.active = false;
                 if (spotlightRef.current) spotlightRef.current.style.opacity = "0";
+                // Gentle repel impulse once the cursor leaves — nodes keep
+                // their own wander motion going underneath this.
                 for (const n of state.nodes) {
                     const dx = n.x - state.mouse.x;
                     const dy = n.y - state.mouse.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < MOUSE_RADIUS) {
-                        const force = (1 - dist / MOUSE_RADIUS) * 0.6;
-                        n.vx += (dx / (dist || 1)) * force;
-                        n.vy += (dy / (dist || 1)) * force;
+                        const force = (1 - dist / MOUSE_RADIUS) * 0.8;
+                        n.impulseX += (dx / (dist || 1)) * force;
+                        n.impulseY += (dy / (dist || 1)) * force;
                     }
                 }
             }, 160);
@@ -223,8 +239,14 @@ function NeuralNetworkBackground() {
 
             for (const n of nodes) {
                 if (!reducedMotion) {
-                    n.x += n.vx;
-                    n.y += n.vy;
+                    // Continuous organic wander — heading drifts randomly but
+                    // speed never decays to zero, so nodes are always moving.
+                    n.angle += (Math.random() - 0.5) * n.turnSpeed;
+                    const wx = Math.cos(n.angle) * n.baseSpeed;
+                    const wy = Math.sin(n.angle) * n.baseSpeed;
+
+                    n.x += wx + n.impulseX;
+                    n.y += wy + n.impulseY;
 
                     if (n.x < -20) n.x = width + 20;
                     if (n.x > width + 20) n.x = -20;
@@ -237,15 +259,16 @@ function NeuralNetworkBackground() {
                         const dist2 = dx * dx + dy * dy;
                         if (dist2 < MOUSE_RADIUS * MOUSE_RADIUS) {
                             const dist = Math.sqrt(dist2) || 1;
-                            const force = (1 - dist / MOUSE_RADIUS) * 0.035;
-                            n.vx += (dx / dist) * force;
-                            n.vy += (dy / dist) * force;
-                            n.glow = Math.max(n.glow, (1 - dist / MOUSE_RADIUS) * 0.5);
+                            const force = (1 - dist / MOUSE_RADIUS) * 0.08;
+                            n.impulseX += (dx / dist) * force;
+                            n.impulseY += (dy / dist) * force;
+                            n.glow = Math.max(n.glow, (1 - dist / MOUSE_RADIUS) * 0.7);
                         }
                     }
 
-                    n.vx *= 0.97;
-                    n.vy *= 0.97;
+                    // Only the extra cursor/pulse push decays — base wander stays constant
+                    n.impulseX *= 0.92;
+                    n.impulseY *= 0.92;
                 }
 
                 n.phase += 0.02 * n.pulseSpeed;
@@ -330,6 +353,21 @@ function NeuralNetworkBackground() {
                 }
             }
 
+            // --- Cursor comet-trail: fading sparks along the recent path ---
+            const trail = state.trail;
+            for (let t = trail.length - 1; t >= 0; t--) {
+                const sp = trail[t];
+                sp.life -= 0.07;
+                if (sp.life <= 0) {
+                    trail.splice(t, 1);
+                    continue;
+                }
+                ctx.beginPath();
+                ctx.fillStyle = `rgba(255, 180, 90, ${sp.life * 0.5})`;
+                ctx.arc(sp.x, sp.y, 2 + sp.life * 1.5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
             for (const n of nodes) {
                 const pulseWave = (Math.sin(n.phase) + 1) / 2;
                 const alpha = Math.min(1, 0.35 + pulseWave * 0.4 + n.glow);
@@ -356,10 +394,24 @@ function NeuralNetworkBackground() {
         };
         window.addEventListener("resize", handleResize);
 
+        // Automatic ambient energy pulses — fire on their own on a timer so
+        // the network always feels alive, even with zero interaction.
+        if (!reducedMotion) {
+            ambientIntervalRef.current = setInterval(() => {
+                state.pulses.push({
+                    x: Math.random() * state.width,
+                    y: Math.random() * state.height,
+                    radius: 0,
+                    life: 0.7, // softer than a click pulse
+                });
+            }, AMBIENT_PULSE_INTERVAL);
+        }
+
         return () => {
             cancelAnimationFrame(rafRef.current);
             clearTimeout(resizeTORef.current);
             clearTimeout(mouseIdleTORef.current);
+            clearInterval(ambientIntervalRef.current);
             window.removeEventListener("resize", handleResize);
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
