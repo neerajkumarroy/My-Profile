@@ -8,11 +8,28 @@
   text-align: center;
   margin-bottom: 60px;
 }
+.skills-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-.section-title span {
-  color: #ff7b00;
-  font-size: 18px;
+.skills-line {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, rgba(124, 108, 255, 0.4));
+  border-radius: 2px;
+}
+
+.skills-eyebrow h4 {
+  margin: 0;
+  font-size: 0.95rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #00e5ff;
 }
 
 .section-title h2 {

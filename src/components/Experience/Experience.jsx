@@ -59,8 +59,13 @@ function Experience() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
       >
-        <span>Experience</span>
+        <div className="experience-eyebrow">
+          <span className="experience-line"></span>
+          <h4>Experience</h4>
+        </div>
+
         <h2>Professional Journey</h2>
+
         <p>
           My professional experience and projects where I applied my development
           skills to build real-world applications.

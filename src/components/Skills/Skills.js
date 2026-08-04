@@ -164,15 +164,17 @@ function Skills() {
     return (
         <section className="skills" id="skills">
             <div className="section-title">
-                <motion.span
+                <motion.div
+                    className="skills-eyebrow"
                     custom={0}
                     variants={titleVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.6 }}
                 >
-                    My Skills
-                </motion.span>
+                    <span className="skills-line"></span>
+                    <h4>My Skills</h4>
+                </motion.div>
 
                 <motion.h2
                     custom={1}

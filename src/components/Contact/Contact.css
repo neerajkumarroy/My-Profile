@@ -7,17 +7,33 @@
   text-align: center;
   margin-bottom: 60px;
 }
-
-.contact-heading span {
-  color: #ff7b00;
-  font-size: 18px;
-  font-weight: 600;
-}
-
 .contact-heading h2 {
   color: #fff;
   font-size: 45px;
   margin: 15px 0;
+}
+.contact-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-line {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, #00e5ff, rgba(124, 108, 255, 0.4));
+  border-radius: 2px;
+}
+
+.contact-eyebrow h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #00e5ff;
 }
 
 .contact-heading p {

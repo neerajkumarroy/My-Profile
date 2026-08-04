@@ -111,8 +111,13 @@ function Contact() {
     return (
         <section className="contact" id="contact">
             <div className="contact-heading">
-                <span>Get In Touch</span>
+                <div className="contact-eyebrow">
+                    <span className="contact-line"></span>
+                    <h4 className="exitcolor">GET IN TOUCH</h4>
+                </div>
+
                 <h2>Let's Work Together</h2>
+
                 <p>
                     Have a project in mind or want to discuss an opportunity?
                     Feel free to contact me.

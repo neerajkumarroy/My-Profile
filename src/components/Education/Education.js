@@ -69,15 +69,17 @@ function Education() {
     return (
         <section className="education" id="education">
             <div className="education-heading">
-                <motion.span
+                <motion.div
+                    className="education-eyebrow"
                     custom={0}
                     variants={titleVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.6 }}
                 >
-                    My Education
-                </motion.span>
+                    <span className="education-line"></span>
+                    <h4>My Education</h4>
+                </motion.div>
 
                 <motion.h2
                     custom={1}

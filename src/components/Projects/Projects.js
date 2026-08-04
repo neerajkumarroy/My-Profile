@@ -62,15 +62,17 @@ function Projects() {
     return (
         <section className="projects" id="projects">
             <div className="section-title">
-                <motion.span
+                <motion.div
+                    className="projects-eyebrow"
                     custom={0}
                     variants={titleVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.6 }}
                 >
-                    Portfolio
-                </motion.span>
+                    <span className="projects-line"></span>
+                    <h4>Projects</h4>
+                </motion.div>
                 <motion.h2
                     custom={1}
                     variants={titleVariants}
