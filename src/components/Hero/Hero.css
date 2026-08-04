@@ -7,153 +7,71 @@
   padding: 100px 8%;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(-45deg, #050816, #0a0f2c, #050816, #100a24);
-  background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite;
+  background: #050816;
 }
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* ---------- Moving grid overlay ---------- */
-.grid-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(255, 123, 0, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 123, 0, 0.06) 1px, transparent 1px);
-  background-size: 45px 45px;
-  animation: gridMove 20s linear infinite;
-  mask-image: radial-gradient(circle at 50% 40%, black 0%, transparent 75%);
-}
-
-@keyframes gridMove {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 90px 90px;
-  }
-}
-
-/* ---------- Meteors ---------- */
-.meteors {
+/* =====================================================================
+   NEURAL NETWORK BACKGROUND
+   ===================================================================== */
+.neural-bg-wrap {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
-  pointer-events: none;
+  background: #050816;
+  touch-action: none;
 }
 
-.meteor {
+.neural-bg-canvas {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-  opacity: 0;
-  animation-name: meteorFall;
-  animation-timing-function: ease-in;
-  animation-iteration-count: infinite;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
 }
 
-.meteor::before {
-  content: "";
+.neural-bg-spotlight {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 90px;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 180, 80, 0.9), transparent);
-  transform: translateY(-50%) rotate(215deg);
-  transform-origin: left center;
-}
-
-@keyframes meteorFall {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  10% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-260px, 220px);
-  }
-}
-
-/* ---------- Parallax orbs ---------- */
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  z-index: 0;
-  pointer-events: none;
-}
-
-.orb-1 {
-  width: 260px;
-  height: 260px;
-  top: 10%;
-  left: 8%;
-  background: rgba(255, 123, 0, 0.28);
-}
-
-.orb-2 {
-  width: 200px;
-  height: 200px;
-  bottom: 12%;
-  left: 30%;
-  background: rgba(97, 219, 251, 0.18);
-}
-
-.orb-3 {
-  width: 220px;
-  height: 220px;
-  top: 20%;
-  right: 10%;
-  background: rgba(77, 179, 61, 0.16);
-}
-
-/* ---------- Cursor spotlight ---------- */
-.cursor-spotlight {
-  position: absolute;
-  width: 400px;
-  height: 400px;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(255, 123, 0, 0.15) 0%,
-    rgba(255, 123, 0, 0) 70%
+    rgba(255, 123, 0, 0.16) 0%,
+    rgba(97, 219, 251, 0.06) 45%,
+    transparent 72%
   );
-  transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform, opacity;
 }
 
-.particle-canvas {
-  position: absolute;
-  inset: 0;
+@media (max-width: 768px) {
+  .neural-bg-spotlight {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+/* =====================================================================
+   HERO CONTENT
+   ===================================================================== */
+.hero-content-wrap {
   width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+  pointer-events: none; /* let mouse/click reach the canvas underneath... */
+}
+
+.hero-content-wrap > * {
+  pointer-events: auto; /* ...but re-enable it for actual content */
 }
 
 .hero-left,
@@ -171,7 +89,6 @@
   margin: 20px 0;
 }
 
-/* ---------- Gradient animated name ---------- */
 .gradient-name {
   background: linear-gradient(
     90deg,
@@ -261,7 +178,6 @@
   border: 2px solid #ff7b00 !important;
 }
 
-/* ---------- Ripple effect ---------- */
 .ripple {
   position: absolute;
   width: 12px;
@@ -327,7 +243,6 @@
   border-radius: 30%;
 }
 
-/* ---------- Orbit rings ---------- */
 .orbit-ring {
   position: absolute;
   border: 1px dashed rgba(255, 123, 0, 0.35);
@@ -345,7 +260,6 @@
   border-color: rgba(255, 123, 0, 0.2);
 }
 
-/* ---------- Conic rotating ring around photo ---------- */
 .conic-ring-wrap {
   position: absolute;
   width: 320px;
@@ -428,28 +342,6 @@
   }
 }
 
-/* ---------- Scroll indicator ---------- */
-.scroll-indicator {
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 26px;
-  height: 42px;
-  border: 2px solid rgba(255, 123, 0, 0.6);
-  border-radius: 14px;
-  z-index: 3;
-}
-
-.scroll-indicator span {
-  display: block;
-  width: 5px;
-  height: 5px;
-  background: #ff7b00;
-  border-radius: 50%;
-  margin: 6px auto;
-}
-
 /* ========================= */
 @media (max-width: 1200px) {
   .hero {
@@ -476,6 +368,9 @@
     min-height: auto;
     padding-bottom: 60px;
   }
+  .hero-content-wrap {
+    flex-direction: column-reverse;
+  }
   .hero-left {
     width: 100%;
     display: flex;
@@ -498,12 +393,6 @@
   .hero-text {
     margin-left: auto;
     margin-right: auto;
-  }
-  .cursor-spotlight {
-    display: none;
-  }
-  .orb {
-    display: none;
   }
 }
 
@@ -533,9 +422,6 @@
   .conic-ring-wrap {
     width: 260px;
     height: 260px;
-  }
-  .meteors {
-    display: none;
   }
 }
 
@@ -595,8 +481,8 @@
   .gradient-name,
   .orbit-ring,
   .conic-ring,
-  .grid-overlay,
-  .meteor {
+  .neural-bg-spotlight {
     animation: none !important;
+    transition: none !important;
   }
 }
