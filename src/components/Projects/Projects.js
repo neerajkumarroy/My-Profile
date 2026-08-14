@@ -4,6 +4,9 @@ import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Project1 from "../../images/yogawellness.png";
 import project2 from "../../images/Global-Dental.png";
 import Project3 from "../../images/Data-string.png";
+import Project4 from "../../images/clean&clear.png";
+import Project5 from "../../images/portfolio.png";
+
 
 const projectData = [
     {
@@ -16,6 +19,7 @@ const projectData = [
         github: "https://github.com/neerajkumarroy/yoga-wellness",
         live: "https://yoga-wellness.onrender.com/",
     },
+
     {
         id: 2,
         image: project2,
@@ -35,6 +39,26 @@ const projectData = [
         tech: ["Next.js", "CSS3", "MongoDB"],
         github: "https://github.com/neerajkumarroy",
         live: "https://datastringconsulting.com/",
+    },
+    {
+        id: 4,
+        image: Project4,
+        title: "Clean & Clear Face Wash Website",
+        description:
+            "Clean & Clear is a modern, animated skincare website built with React, GSAP, and Lenis, featuring a premium product-focused design and smooth scrolling experience.",
+        tech: ["React.js", "css3", "Node.js"],
+        github: "https://github.com/neerajkumarroy/rolexnext",
+        live: "https://rolexnext.onrender.com/",
+    },
+    {
+        id: 5,
+        image: Project5,
+        title: "My Portfolio Website",
+        description:
+            "A modern, responsive developer portfolio showcasing my skills, projects, experience, and web development journey with a clean and professional design.",
+        tech: ["React.js", "CSS3", "Node.js"],
+        github: "https://github.com/neerajkumarroy/my-portfolio",
+        live: "https://my-profile-kods.onrender.com",
     },
 
 ];
