@@ -12,7 +12,7 @@ const fadeUp = {
     }),
 };
 
-const techStack = ["React.js", "Node.js", "MongoDB", "JavaScript"];
+const techStack = ["React.js", "Node.js", "MongoDB", "Express.js", "JavaScript"];
 
 const stats = [
     { value: "10+", label: "Projects" },
