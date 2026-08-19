@@ -599,8 +599,7 @@ function Hero() {
                     </motion.div>
 
                     <motion.p className="hero-text" variants={fadeUp}>
-                        I build premium web applications with React, Node.js,
-                        Express and MongoDB.
+                        I build modern and user-friendly web applications using React, Node.js, Express, and MongoDB. I enjoy turning ideas into clean, responsive, and easy-to-use websites that look great and work smoothly.
                     </motion.p>
 
                     <motion.div className="hero-buttons" variants={fadeUp}>

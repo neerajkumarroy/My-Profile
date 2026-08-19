@@ -1,8 +1,18 @@
+/* =========================================================
+   PROJECTS SECTION
+========================================================= */
+
 .projects {
+  width: 100%;
   padding: 100px 8%;
   background: #050816;
   overflow: hidden;
+  box-sizing: border-box;
 }
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
 
 .section-title {
   text-align: center;
@@ -12,8 +22,8 @@
 .projects-eyebrow {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  text-align: center;
   margin-bottom: 20px;
 }
 
@@ -26,245 +36,673 @@
 
 .projects-eyebrow h4 {
   margin: 0;
+  color: #00e5ff;
   font-size: 0.95rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 2px;
-  color: #00e5ff;
+  text-transform: uppercase;
 }
 
 .section-title h2 {
-  font-size: clamp(28px, 4.5vw, 45px);
-  color: #fff;
   margin: 15px 0;
+  color: #ffffff;
+  font-size: clamp(30px, 4.5vw, 45px);
+  line-height: 1.2;
+  font-weight: 700;
 }
 
 .section-title p {
   max-width: 700px;
-  margin: auto;
+  margin: 0 auto;
   color: #bfbfbf;
+  font-size: 16px;
   line-height: 1.7;
-  font-size: clamp(14px, 1.6vw, 16px);
 }
 
-/* ---------------- grid ---------------- */
+/* =========================================================
+   PROJECT GRID
+========================================================= */
+
 .project-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 35px;
 }
 
+/* =========================================================
+   PROJECT CARD
+========================================================= */
+
 .project-card {
-  background: #111827;
-  border-radius: 25px;
-  overflow: hidden;
-  transition:
-    box-shadow 0.4s ease,
-    border-color 0.4s ease;
-  border: 1px solid rgba(255, 255, 255, 0.08);
   position: relative;
+
   display: flex;
   flex-direction: column;
+
+  overflow: hidden;
+
+  background: #111827;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 25px;
+
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.4s ease;
 }
 
 .project-card:hover {
-  box-shadow: 0 25px 55px rgba(255, 123, 0, 0.25);
-  border-color: rgba(255, 123, 0, 0.35);
+  border-color: rgba(255, 123, 0, 0.4);
+
+  box-shadow: 0 25px 55px rgba(255, 123, 0, 0.22);
 }
+
+/* =========================================================
+   PROJECT NUMBER
+========================================================= */
 
 .project-number {
   position: absolute;
   top: 14px;
   left: 16px;
-  z-index: 3;
+
+  z-index: 5;
+
+  padding: 5px 11px;
+
+  color: #ffffff;
+
+  background: rgba(5, 8, 22, 0.6);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+
+  backdrop-filter: blur(8px);
+
   font-family: monospace;
   font-size: 13px;
-  color: #fff;
-  background: rgba(5, 8, 22, 0.55);
-  backdrop-filter: blur(6px);
-  padding: 4px 10px;
-  border-radius: 20px;
+
   letter-spacing: 1px;
 }
 
-/* ---------------- image + hover overlay ---------------- */
+/* =========================================================
+   PROJECT IMAGE
+========================================================= */
+
 .project-image {
-  height: 240px;
-  overflow: hidden;
   position: relative;
+
+  width: 100%;
+  height: 240px;
+
+  overflow: hidden;
+
+  background: #0b1020;
 }
 
 .project-image img {
   width: 100%;
   height: 100%;
+
+  display: block;
+
   object-fit: cover;
+
   transition:
     transform 0.6s ease,
     filter 0.5s ease;
 }
 
 .project-card:hover .project-image img {
-  transform: scale(1.1);
+  transform: scale(1.08);
   filter: brightness(0.55);
 }
+
+/* =========================================================
+   IMAGE OVERLAY
+========================================================= */
 
 .image-overlay {
   position: absolute;
   inset: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 18px;
+
   opacity: 0;
-  transition: opacity 0.4s ease;
+
+  background: rgba(5, 8, 22, 0.15);
+
+  transition:
+    opacity 0.4s ease,
+    background 0.4s ease;
 }
 
 .project-card:hover .image-overlay {
   opacity: 1;
+
+  background: rgba(5, 8, 22, 0.25);
 }
+
+/* =========================================================
+   OVERLAY BUTTON
+========================================================= */
 
 .overlay-btn {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  background: #ff7b00;
-  color: #050816;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+
+  color: #050816;
+  background: #ff7b00;
+
+  border-radius: 50%;
+
   text-decoration: none;
+
+  font-size: 18px;
+
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 
-/* ---------------- content ---------------- */
+.overlay-btn:hover {
+  background: #ffffff;
+  color: #ff7b00;
+}
+
+/* =========================================================
+   PROJECT CONTENT
+========================================================= */
+
 .project-content {
-  padding: 25px;
   display: flex;
   flex-direction: column;
+
   flex: 1;
+
+  padding: 25px;
 }
 
 .project-content h3 {
-  color: white;
-  margin-bottom: 15px;
+  margin: 0 0 15px;
+
+  color: #ffffff;
+
   font-size: clamp(19px, 2.2vw, 24px);
+  line-height: 1.3;
 }
 
 .project-content p {
-  color: #bdbdbd;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  font-size: 14.5px;
   flex: 1;
+
+  margin: 0 0 20px;
+
+  color: #bdbdbd;
+
+  font-size: 14.5px;
+  line-height: 1.7;
 }
+
+/* =========================================================
+   TECHNOLOGY STACK
+========================================================= */
 
 .tech-stack {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+
+  gap: 9px;
+
   margin-bottom: 25px;
 }
 
 .tech-stack span {
-  padding: 8px 15px;
-  background: rgba(255, 123, 0, 0.15);
+  padding: 7px 13px;
+
   color: #ff7b00;
+
+  background: rgba(255, 123, 0, 0.12);
+
+  border: 1px solid rgba(255, 123, 0, 0.15);
+
   border-radius: 30px;
-  font-size: 13px;
+
+  font-size: 12.5px;
+  font-weight: 500;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 }
+
+.tech-stack span:hover {
+  background: rgba(255, 123, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   PROJECT BUTTONS
+========================================================= */
 
 .project-buttons {
   display: flex;
-  gap: 15px;
+
+  gap: 12px;
+
+  width: 100%;
 }
 
 .project-buttons a {
   flex: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+
+  padding: 10px 14px;
+
+  color: #ffffff;
+
+  background: #ff7b00;
+
+  border: 2px solid #ff7b00;
+  border-radius: 40px;
+
   text-align: center;
   text-decoration: none;
-  padding: 12px;
-  background: #ff7b00;
-  color: white;
-  border-radius: 40px;
+
+  font-size: 14px;
+  font-weight: 600;
+
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
-  font-size: 14.5px;
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 
 .project-buttons a:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 123, 0, 0.35);
+
+  box-shadow: 0 10px 25px rgba(255, 123, 0, 0.3);
 }
 
-.github {
-  background: transparent !important;
-  border: 2px solid #ff7b00;
+.project-buttons .github {
+  color: #ff7b00;
+
+  background: transparent;
+}
+
+.project-buttons .github:hover {
+  color: #ffffff;
+  background: #ff7b00;
 }
 
 /* =========================================================
-   RESPONSIVE
+   LOAD MORE
 ========================================================= */
+
+.load-more-wrapper {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 55px;
+}
+
+/* =========================================================
+   ORANGE LOAD MORE BUTTON
+========================================================= */
+
+.load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 14px;
+
+  padding: 14px 26px;
+
+  color: #ffffff;
+
+  background: #ff7b00;
+
+  border: 2px solid #ff7b00;
+  border-radius: 50px;
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+
+  box-shadow: 0 10px 30px rgba(255, 123, 0, 0.22);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.load-more-btn:hover {
+  background: #ff8c1a;
+  border-color: #ff8c1a;
+
+  box-shadow: 0 15px 35px rgba(255, 123, 0, 0.35);
+}
+
+/* =========================================================
+   LOAD MORE ICON
+========================================================= */
+
+.load-more-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ff7b00;
+  background: #ffffff;
+
+  border-radius: 50%;
+
+  transition: transform 0.3s ease;
+}
+
+.load-more-btn:hover .load-more-icon {
+  transform: translateY(3px);
+}
+
+/* =========================================================
+   PROJECT COUNT
+========================================================= */
+
+.project-count {
+  margin: 14px 0 0;
+
+  color: #8c93a3;
+
+  font-size: 13px;
+  text-align: center;
+}
+
+.final-count {
+  margin-top: 45px;
+}
+
+/* =========================================================
+   MOBILE LOAD MORE
+========================================================= */
+
+@media (max-width: 768px) {
+  .load-more-wrapper {
+    margin-top: 42px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 280px;
+
+    padding: 13px 20px;
+
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .load-more-wrapper {
+    margin-top: 35px;
+  }
+
+  .load-more-btn {
+    max-width: 260px;
+
+    padding: 13px 18px;
+
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   PROJECT COUNT
+========================================================= */
+
+.project-count {
+  margin: 14px 0 0;
+
+  color: #777f91;
+
+  font-size: 13px;
+}
+
+.final-count {
+  margin-top: 45px;
+
+  text-align: center;
+}
+
+/* =========================================================
+   LARGE DESKTOP
+========================================================= */
+
 @media (max-width: 1200px) {
   .projects {
-    padding: 90px 6%;
+    padding: 0px 6%;
   }
 
   .project-container {
     gap: 28px;
   }
-}
 
-@media (max-width: 992px) {
-  .project-container {
-    grid-template-columns: repeat(2, 1fr);
+  .project-content {
+    padding: 22px;
   }
 }
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 992px) {
+  .projects {
+    padding: 0px 5%;
+  }
+
+  .project-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+  }
+
+  .project-image {
+    height: 225px;
+  }
+
+  .project-content h3 {
+    font-size: 21px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
   .projects {
-    padding: 80px 25px;
+    padding: 0px 25px;
   }
 
   .section-title {
-    margin-bottom: 50px;
+    margin-bottom: 45px;
+  }
+
+  .section-title h2 {
+    font-size: 32px;
+  }
+
+  .section-title p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .project-container {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 28px;
   }
 
-  .project-buttons {
-    flex-direction: column;
+  .project-card {
+    border-radius: 22px;
   }
 
   .project-image {
-    height: 220px;
+    height: 230px;
   }
 
-  /* overlay works fine on touch, but bottom buttons remain the
-     primary tap target on small screens */
+  .project-content {
+    padding: 22px;
+  }
+
+  .project-content h3 {
+    font-size: 21px;
+  }
+
+  .project-content p {
+    font-size: 14px;
+  }
+
+  /*
+       On mobile, overlay buttons remain visible
+       because hover doesn't work reliably on touch devices.
+    */
+
   .image-overlay {
     opacity: 1;
+
+    align-items: flex-end;
+
+    padding-bottom: 16px;
+
     background: linear-gradient(
       to top,
-      rgba(5, 8, 22, 0.7) 0%,
-      rgba(5, 8, 22, 0) 55%
+      rgba(5, 8, 22, 0.72) 0%,
+      rgba(5, 8, 22, 0) 60%
     );
-    align-items: flex-end;
-    padding-bottom: 16px;
+  }
+
+  .project-card:hover .image-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(5, 8, 22, 0.72) 0%,
+      rgba(5, 8, 22, 0) 60%
+    );
+  }
+
+  .project-card:hover .project-image img {
+    transform: none;
+    filter: none;
+  }
+
+  .project-buttons {
+    gap: 10px;
+  }
+
+  .load-more-wrapper {
+    margin-top: 42px;
+  }
+
+  .load-more-btn {
+    width: 100%;
+    max-width: 280px;
   }
 }
 
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
 @media (max-width: 480px) {
   .projects {
-    padding: 70px 18px;
+    padding: 0px 18px;
+  }
+
+  .section-title {
+    margin-bottom: 40px;
+  }
+
+  .projects-eyebrow {
+    gap: 9px;
+  }
+
+  .projects-line {
+    width: 25px;
+  }
+
+  .projects-eyebrow h4 {
+    font-size: 0.85rem;
+  }
+
+  .section-title h2 {
+    margin: 12px 0;
+
+    font-size: 29px;
+  }
+
+  .section-title p {
+    font-size: 13.5px;
+  }
+
+  .project-image {
+    height: 210px;
   }
 
   .project-content {
     padding: 20px;
+  }
+
+  .project-content h3 {
+    font-size: 20px;
+  }
+
+  .project-content p {
+    font-size: 13.5px;
+    line-height: 1.65;
+  }
+
+  .tech-stack {
+    gap: 7px;
+    margin-bottom: 20px;
+  }
+
+  .tech-stack span {
+    padding: 6px 11px;
+    font-size: 11.5px;
+  }
+
+  .project-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .project-buttons a {
+    width: 100%;
+    min-height: 42px;
+    box-sizing: border-box;
   }
 
   .overlay-btn {
@@ -272,12 +710,40 @@
     height: 42px;
     font-size: 16px;
   }
+
+  .project-number {
+    top: 12px;
+    left: 12px;
+
+    padding: 4px 9px;
+
+    font-size: 12px;
+  }
+
+  .load-more-wrapper {
+    margin-top: 35px;
+  }
+
+  .load-more-btn {
+    max-width: 260px;
+
+    padding: 13px 18px;
+
+    font-size: 14px;
+  }
 }
 
-/* Respect users who prefer reduced motion */
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+========================================================= */
+
 @media (prefers-reduced-motion: reduce) {
   .project-image img,
-  .project-card {
+  .project-card,
+  .project-buttons a,
+  .load-more-btn,
+  .load-more-icon,
+  .tech-stack span {
     transition: none !important;
   }
 }
