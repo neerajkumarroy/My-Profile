@@ -7,6 +7,8 @@ import Project6 from "../../images/nksports.png";
 import Project7 from "../../images/organic.png";
 import Project8 from "../../images/rento.png";
 import Project9 from "../../images/vitality-medcare.png";
+import Project10 from "../../images/chat_application.png";
+
 
 const projectData = [
     {
@@ -136,6 +138,29 @@ const projectData = [
         ],
         github: "https://github.com/neerajkumarroy/vitality-medcare",
         live: "https://vitality-medcare.onrender.com/",
+    },
+    {
+        id: 10,
+        image: Project10,
+        title: "Real-Time Chat Application",
+        description:
+            "My Real-Time Chat Application is a modern full-stack platform designed for seamless communication with instant messaging, typing indicators, read receipts, reactions, replies, and file sharing. Built with React.js, Node.js, Express.js, MongoDB, Mongoose, and Socket.IO, it offers a responsive and professional user experience.",
+        tech: [
+            "React.js",
+            "CSS3",
+            "Node.js",
+            "MongoDB",
+            "Postman",
+            "Git",
+            "GitHub",
+            "Render",
+            "Express.js",
+            "Socket.IO",
+            "React Icons",
+            "JavaScript"
+        ],
+        github: "https://github.com/neerajkumarroy/chat-application",
+        live: "https://chat-application-9xoj.onrender.com/login/",
     },
 ];
 
