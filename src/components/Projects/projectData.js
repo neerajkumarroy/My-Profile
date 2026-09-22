@@ -8,6 +8,8 @@ import Project7 from "../../images/organic.png";
 import Project8 from "../../images/rento.png";
 import Project9 from "../../images/vitality-medcare.png";
 import Project10 from "../../images/chat_application.png";
+import Project11 from "../../images/thrusture.png";
+
 
 
 const projectData = [
@@ -161,6 +163,29 @@ const projectData = [
         ],
         github: "https://github.com/neerajkumarroy/chat-application",
         live: "https://chat-application-9xoj.onrender.com/login/",
+    },
+    {
+        id: 11,
+        image: Project11,
+        title: "Thrusture - Web, Software & Digital Marketing Platform",
+        description:
+            "Thrusture is a professional full-stack business website designed to showcase web development, mobile app development, software development, and digital marketing services under one platform. The project features a modern, responsive, and user-friendly interface with frontend and backend integration. Built using React.js, Node.js, Express.js, MongoDB, JavaScript, HTML5, CSS3, REST APIs, and Postman, the website provides a professional digital presence and a smooth experience across different devices.",
+        tech: [
+            "React.js",
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "REST API",
+            "Postman",
+            "Git",
+            "GitHub",
+            "Render"
+        ],
+        github: "https://github.com/neerajkumarroy/thrusture",
+        live: "https://thrusture.onrender.com/",
     },
 ];
 
